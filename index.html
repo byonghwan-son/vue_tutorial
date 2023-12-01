@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  <title>Vue JS</title>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <p>텍스트 보간법 사용: {{ rawHtml }}</p>
+    <p>v-html 디렉티브 사용: <span v-html="rawHtml"></span></p>
+    <div v-bind:id="dynamicId"></div>
+    <div :id="dynamicId2"></div>
+    <button :disabled="isButtonDisabled">버튼</button>
+    <div v-bind="objectOfAttrs"></div>  <!-- <div id="container" class="wrapper"></div> -->
+  </div>  
+</body>
+<script type="module">
+  import { createApp, ref } from 'vue'
+
+  createApp({
+    setup() {
+      const message = ref('Hello Vue!!')
+      const rawHtml = ref('<span style="color:red">이것은 빨간색이어야 합니다.</span>')
+      const dynamicId = ref('lblTitle')
+      const dynamicId2 = document.all
+      const isButtonDisabled = undefined // falsy value : null, undefined, false, NaN, 0, -0, 0n, "", document.all
+      const objectOfAttrs = {
+        id: 'container',
+        class: 'wrapper'
+      }
+      return {
+        message,
+        rawHtml,
+        dynamicId,
+        dynamicId2,
+        isButtonDisabled,
+        objectOfAttrs
+      }
+    }
+  }).mount('#app')
+</script>
+</html>
+
+
